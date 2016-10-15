@@ -11,6 +11,7 @@
             <nav>
                 <a href="/index.php">Home</a>
                 <a href="/model/index.php">User Info</a>
+                <a href="/model/readdatabase.php">Users Info</a>
             </nav>
             
             <h1>TREES</h1>
