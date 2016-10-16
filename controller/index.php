@@ -1,7 +1,7 @@
 <?php
 
-require ('../controller/database.php');
-require ('../controller/trees.php');
+require ('../model/database.php');
+require ('../model/trees.php');
 
 $action = filter_input(INPUT_POST, 'action');
 
