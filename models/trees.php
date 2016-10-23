@@ -103,7 +103,7 @@ function insert_tree_image($target_files){
     $statement->execute();
     $statement->closeCursor();
     }
-function insert_tree_leaf_image($target_files){
+/*function insert_tree_leaf_image($target_files){
     global $db;
     $query = 'INSERT INTO trees '
             . '(tree_leaf_image) '
@@ -113,15 +113,15 @@ function insert_tree_leaf_image($target_files){
     $statement->bindValue(':target_files', $target_files);
     $statement->execute();
     $statement->closeCursor();
-    }
- function edit_tree_entry($tree_name, $tree_genus, $tree_description, $tree_id){
+    }*/
+ function edit_tree_entry($tree_name, $tree_genus, $tree_description,  $tree_id){
     global $db;
-    $query = 'UPDATE trees 
-        SET tree_name = :tree_name, 
-        tree_genus = :tree_genus, 
-        tree_description = :tree_description,
-           WHERE tree_id = :tree_id ';
-    #try {
+    $query = 'UPDATE trees '
+       .'SET tree_name = :tree_name, ' 
+       .'tree_genus = :tree_genus, ' 
+       .'tree_description = :tree_description '
+       .'WHERE tree_id = :tree_id ';
+    try {
     $statement = $db->prepare($query);
     $statement->bindValue(':tree_name', $tree_name);
     $statement->bindValue(':tree_genus', $tree_genus);    
@@ -130,10 +130,10 @@ function insert_tree_leaf_image($target_files){
     $statement->execute();
     $statement->fetchAll();
     $statement->closeCursor();
-    #return $edit;
-    /*}
+   
+    }
       catch (Exception $e) {
           $error_mesage = $e->getMessage();
-        display_db_error($error_mesage);
-      }*/
+       echo"<script type='text/javascript'>alert('$error_mesage');</script>";
+      }
 }

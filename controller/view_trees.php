@@ -5,7 +5,7 @@
     <table>
         <tr>
             <th>Tree Image</th>
-            <th>Tree Leaf Image</th>
+            <!--<th>Tree Leaf Image</th>-->
             <th>TreeName</th>
             <th>Tree Genus</th>
             <th>Tree Description</th>
@@ -13,11 +13,11 @@
             <th>Edit Tree</th>
         </tr>
        
-            <td ><img src="<?php echo $tree_ids["tree_image_filename"]; ?>" alt="" height="100" width="150">
+            <td ><img src="<?php echo $tree["tree_image"]; ?>" alt="" height="100" width="150">
             </td>
             
-            <td ><img src="<?php echo $tree["tree_leaf_image_filename"]; ?>" alt="" height="100" width="150">
-            </td>
+            <!--<td ><img src="<?php echo $tree["tree_leaf_image_filename"]; ?>" alt="" height="100" width="150">
+            </td>-->
             <td><?php echo $tree["tree_name"]; ?> </td>
             <td> <?php echo $tree["tree_genus"]; ?></td>
             <td><p><?php echo $tree["tree_description"]; ?></p></td>
@@ -29,7 +29,7 @@
                     <input type="submit" name="submit" value="DELETE TREE" class="submitt">
                 </form>
             </td>
-            <?php echo 'tree_id' .$tree_ids;?>
+           
             <td>
 
                 <form action=".?action=edit_tree" method="post" >
