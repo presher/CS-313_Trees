@@ -65,7 +65,9 @@ if ($upload_tree_Ok == 0 ) {
 } if ($upload_tree_Ok == 1 ) {
 (move_uploaded_file($_FILES["tree_image"]["tmp_name"],$target_file));
          #echo 'The file ' .  basename($_FILES["vehicle_image"]["name"]. ' has been uploaded');
-      include_once("../errors/success.php");
+         $alert_text = basename($_FILES["tree_image"]["name"]);
+      echo"<script type='text/javascript'>alert('The File ' . $alert_text . ' has been uploaded');</script>";
+      include ('view_trees.php');
     }  else {
         echo 'Sorry there was an error uploading your file';
     }
