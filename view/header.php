@@ -10,8 +10,8 @@
         <header class="main-header" role="banner">
             <nav>
                 <a href="/index.php">Home</a>
-                <a href="/model/index.php">User Info</a>
-                <a href="/model/readdatabase.php">Users Info</a>
+                <a href="/controller/trees.php">Upload A Tree</a>
+                                
             </nav>
             
             <h1>TREES</h1>
