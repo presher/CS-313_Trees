@@ -20,7 +20,7 @@
             </td>-->
             <td><?php echo $tree["tree_name"]; ?> </td>
             <td> <?php echo $tree["tree_genus"]; ?></td>
-            <td><p><?php echo $tree["tree_description"]; ?></p></td>
+            <td class="description"><?php echo $tree["tree_description"]; ?></td>
             <td>
                 <form action=".?action=delete_tree" method="post" >
                     <input type="hidden" name="action" value="delete_tree">

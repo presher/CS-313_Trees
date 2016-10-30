@@ -8,30 +8,47 @@ function get_users_info(){
    $statement->closeCursor();
    return $users;
 }
-function get_user_id(){
+function get_user_id($email){
    global $db;
-    $query = 'SELECT users_id FROM users'
-            . 'WHERE'
-            . 'users_id = SteveMartin';
+    $query = 'SELECT users_id FROM users '
+            . 'WHERE '
+            . '(email = :email)';
     $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
     $statement->execute();
     $user = $statement->fetch();
     $statement->closeCursor();
+   
    return $user;
 }
-function get_add_tree($target_file, $tree_name, $tree_genus, $tree_description){
+function get_user_name($email){
+   global $db;
+    $query = 'SELECT name FROM users '
+            . 'WHERE '
+            . '(email = :email)';
+            
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    //$statement->bindValue(':name', $name);
+     $statement->execute();
+    $user = $statement->fetch();
+    $statement->closeCursor();
+    
+    return $user;
+}
+function get_add_tree($target_file, $tree_name, $tree_genus, $tree_description, $id){
     global $db;
     $query = 'INSERT INTO trees'
-            . '(tree_image, tree_name, tree_genus, tree_description)'
+            . '(tree_image, tree_name, tree_genus, tree_description, users_id)'
             . 'VALUES'
-            . '(:target_file, :tree_name, :tree_genus, :tree_description)';
+            . '(:target_file, :tree_name, :tree_genus, :tree_description, :id)';
     $statement = $db->prepare($query);
     $statement->bindValue(':target_file', $target_file);
    
     $statement->bindValue(':tree_name', $tree_name);
     $statement->bindValue(':tree_genus', $tree_genus);
     $statement->bindValue(':tree_description', $tree_description);
-    
+     $statement->bindValue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
 }
@@ -68,7 +85,7 @@ function get_tree_id($tree_id) {
     $tree_ids = $statement->fetch();
     $statement->closeCursor();
     #$image_type = $image_id['vehicleType'];
-    echo 'tree id' .$tree_id;
+   
     return $tree_ids;
 }
 function get_trees() {
@@ -136,4 +153,38 @@ function insert_tree_image($target_files){
           $error_mesage = $e->getMessage();
        echo"<script type='text/javascript'>alert('$error_mesage');</script>";
       }
+}
+function insert_user($email, $name, $password){
+    global $db;
+    $query = 'INSERT INTO users'
+            . '(email, name, password)'
+            . 'VALUES'
+            . '(:email, :name, :password)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':name', $name);
+    $statement->bindValue(':password', $password);
+    $statement->execute();
+    $statement->closeCursor();
+    
+}
+function get_user($email, $password, $name){
+    global $db;
+    $query = 'SELECT * FROM users';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
+    $statement->bindValue(':name', $name);
+    $id = $statement->fetchAll();
+    $statement->closeCursor();
+    return $id;
+}
+function verify_email($email){
+    global $db;
+    $query = " SELECT email FROM users";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':email', $email);
+            $email_exists = $statement->execute();
+            $statement->closeCursor();
+            return $email_exists;
 }

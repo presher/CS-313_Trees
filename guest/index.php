@@ -17,7 +17,7 @@ if ($action == NULL) {
 if ($action == "get_trees") {
     $trees = get_trees($tree_name, $tree_genus, $tree_description, $tree_image);
 
-    include ('view_trees.php');
+    include ('guest.php');
     #---------------------------------------------
 }else if(action == 'upload1'){
     echo 'hello yall';
@@ -65,15 +65,11 @@ else if(action == 'add_user'){
     $tree_leaf_image = addslashes(file_get_contents($_FILES['tree_leaf_image']['tmp_name']));
     $tree_leaf_image_filename = addslashes($_FILES['tree_leaf_image']['name']);
     $tree_leaf_image_image_size = getimagesize($_FILES['tree_leaf_image']['tmp_name']);*/
-    
     $tree_name = filter_input(INPUT_POST, 'tree_name');
     $tree_genus = filter_input(INPUT_POST, 'tree_genus');
     $tree_description = filter_input(INPUT_POST, 'tree_description');
     $tree_id = filter_input(INPUT_POST, 'tree_id', FILTER_VALIDATE_INT);
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $id = get_user_id($email);
-    var_dump($id);
-    $users_id = filter_input(INPUT_POST, 'users_id', FILTER_VALIDATE_INT);
+    #$user_id = get_user_id();
     #$users_id = filter_input(INPUT_POST, 'users_id', FILTER_VALIDATE_INT);
    
 
@@ -92,7 +88,7 @@ else if(action == 'add_user'){
         $no_tree_name = "You must enter Tree Name to continue";
         echo"<script type='text/javascript'>alert('$no_tree_name');</script>";
     } else {
-        get_add_tree($target_file, $tree_name, $tree_genus, $tree_description, $id);
+        get_add_tree($target_file, $tree_name, $tree_genus, $tree_description);
         #get_add_tree($target_file, $users_id);
         $tree_ids = get_tree_id($tree_id);
         $trees = get_trees_info();
@@ -137,19 +133,4 @@ else if(action == 'add_user'){
     include_once 'view_trees.php';
 } 
 #---------------------------------------------------------------------------
-else if ($action = 'login'){
-            $users_id = filter_input(INPUT_POST, 'users_id');
-            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            $user= get_user_id($email);
-            echo 'id' .$user;
-            
-}else if ($action == 'upload_tree') {
-    echo 'here i am';
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password');
-    $id = get_user_id($email);
-   
-    echo 'here I am';
-    header('Location: trees.php');
-}
 ?>

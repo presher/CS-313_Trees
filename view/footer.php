@@ -1,11 +1,8 @@
-<form action="/controller/" method="post">
-        <input type="hidden" name="action" value="guest">
-         <label>&nbsp;</label>
-        <input type="submit" value="View Trees">
-        
-    </form>
+
+</div>
 </main>
-<footer>copyright <?php echo date("Y") ?> Jason Presher</footer>
+<footer role="contentinfo">copyright <?php echo date("Y") ?> Jason Presher</footer>
+</div>
 </body>
 </html>
 

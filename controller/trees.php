@@ -11,23 +11,22 @@
     <label>Tree Genus:</label>
     <input type="text" name="tree_genus" value="<?php htmlspecialchars("Tree Genus"); ?>" onfocus="this.value = '';" ><br>
     
-    <label>Tree Image:</label>
-    <input type="file" name="tree_image" id="fileToUpload" required="required"><p>You can only upload JPG, JPEG, PNG & GIF files</p><br>
+   
     
     <!--<label>Tree Leaf Image:</label>
     <input type="file" name="tree_leaf_image" id="fileToUpload"><p>You can only upload JPG, JPEG, PNG & GIF files</p><br>-->
     
-    <label>Tree Description</label>
+    <label>Tree Comments:</label>
     <textarea rows="4" cols="20" name="tree_description" required="required"></textarea><br>
     
-    <label>&nbsp;</label>
-    <input type="hidden" name="tree_id" value="<?php echo $tree_ids['tree_id']; ?>"/><br>
+     <label>Tree Image:</label>
+    <input type="file" name="tree_image" id="fileToUpload" required="required"><p>You can only upload JPG, JPEG, PNG & GIF files</p><br>
     
     <label>&nbsp;</label>
-    <input type="hidden" name="users_id" value="<?php echo $users_id['1']; ?>"/><br>
+    <input type="hidden" name="users_id" value="<?php echo $users_id['users_id']; ?>"/><br>
     
     <label>&nbsp;</label><br>
-    <input type="submit" value="Add Tree" class="submit"/><br>
+    <input type="submit" value="Add Tree" class="submit"/>
 </form>
 
 <?php include ('../view/footer.php');?>
